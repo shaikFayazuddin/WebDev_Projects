@@ -31,6 +31,8 @@ var UserSchema =  new mongoose.Schema({
     },
 })
 
+const User = mongoose.model("User",UserSchema)
+
 const accountSchema = new mongoose.Schema({
     userId : {
         type : mongoose.Schema.Types.ObjectId,
@@ -40,12 +42,10 @@ const accountSchema = new mongoose.Schema({
 
     balance : {
         required : true,
-        type : number
+        type : Number,
     }
 })
 
-
-const User = mongoose.model("User",UserSchema)
 const Account = mongoose.model("Account", accountSchema)
 
 module.exports = {
