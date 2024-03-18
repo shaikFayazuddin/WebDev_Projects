@@ -1,8 +1,8 @@
 const express = require("express")
-const zod = require("zod")
 const router = express.Router()
-const jwt = require("jsonwebtoken")
+const zod = require("zod")
 const { User, Account } = require("../db")
+const jwt = require("jsonwebtoken")
 const { JWT_SECRET } = require("../config")
 const { authMiddleware } = require("../middleware")
 
@@ -50,10 +50,8 @@ router.post("/signup",async (req,res)=>{
         userId,
         balance : 1 + Math.random() * 10000
     })
-    
-    const token = jwt.sign({
-        userId
-    }, JWT_SECRET);
+
+    const token = jwt.sign({userId}, JWT_SECRET);
 
     res.json({
         message: "User created successfully",
@@ -84,11 +82,10 @@ router.post("/signin", async (req,res)=>{
     })
 
     if(user){
-        const token = jwt.sign({
-            userid : user._id
-        },JWT_SECRET)
+        const token = jwt.sign({userid : user._id},JWT_SECRET)
 
         res.json({
+            message: "Sign-in was successful",
             token : token
         })
         return
