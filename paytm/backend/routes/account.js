@@ -18,6 +18,7 @@ router.get("/balance", authMiddleware, async (req, res) => {
 
 router.get("/balance", authMiddleware, async (req, res) => {
     try {
+        console.log(req.userId)
         const account = await Account.findOne({ userId: req.userId });
         
         if (!account) {

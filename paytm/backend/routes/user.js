@@ -23,7 +23,7 @@ router.post("/signup",async (req,res)=>{
     if(!success){
         return res.status(411).json({
             message : "Email already taken/ Invalid details",
-            errors : data.errors
+            // errors : data.errors
         })
     }
 
