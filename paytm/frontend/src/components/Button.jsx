@@ -1,5 +1,5 @@
-export function Button({label,onClick}) {
+export function Button({label,onSubmit}) {
     return <div>
-        <button onClick={onClick} type="button">{label}</button>
+        <button onClick={onSubmit} type="button">{label}</button>
     </div>
 }

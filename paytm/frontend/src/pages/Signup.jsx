@@ -35,16 +35,26 @@ export const Signup = ()=>{
             setPassword(e.target.value)
         }}placeholder={"123456"} label={"Password"}></InputBox>
 
-        <Button onClick={async () => {
-            const response = await axios.post("http://localhost:3004/api/v1/user/signup", {
-              firstName,
-              lastName,
-              username,
-              password
-            });
+        <Button onSubmit={async () => {
+            // const response = await axios.post("http://localhost:3004/api/v1/user/signup", {
+            //   username,
+            //   firstName,
+            //   lastName,
+            //   password
+            // });
+            const response = await axios({
+                method:"POST",
+                url:"http://localhost:3004/api/v1/user/signup",
+                data:{
+                    firstName,
+                    lastName,
+                    username,
+                    password
+                }
+            })
             localStorage.setItem("token", response.data.token)
             navigate("/dashboard")
-          }} label={"Sign up"}></Button>
+          }} label={"Sign up"} />
         <BottomWarning label={"Already have an account?"} buttonText={"Sign in"} to={"/signin"}></BottomWarning>
     </div>
 }
