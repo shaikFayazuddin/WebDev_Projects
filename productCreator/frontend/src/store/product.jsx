@@ -51,24 +51,28 @@ export const useProductStore = create((set)=>({
 
   },
 
-  editProducts : async(pid, updatedProduct)=>{
+  editProducts : async (pid, updatedProduct)=>{
 
-    if(!updatedProduct.name && !updatedProduct.price && !updatedProduct.image){
-      return {success : false, message : "Please fill any one field to update"}
-    }
+    // if(!updatedProduct.name && !updatedProduct.price && !updatedProduct.image){
+    //   return {success : false, message : "Please fill any one field to update"}
+    // }  
     const res = await fetch(`api/products/${pid}`,{
       method:"PUT",
       headers:{
         "Content-Type" : "application/json"
       },
-      body : res.stringify(updatedProduct)
+      body : JSON.stringify(updatedProduct)
     })
 
-    const data = await res.json
+    const data = await res.json()
+    console.log(data)
+
     if(!data.success){
       return {success : false, message : data.message}
     }
-   // set()
+    set((state)=>({
+      products : state.products.map((product)=>(product._id === pid ? data.data : product))
+    }))
     return {success:true, message:data.message}
   }
 }))

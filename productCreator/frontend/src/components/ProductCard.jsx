@@ -40,7 +40,7 @@ const ProductCard = ({product}) => {
     if (success) {
       window.alert("Product updated successfully!",message);
     } else {
-      window.alert(message);
+      window.alert("Error in updating");
     }
   };
 
