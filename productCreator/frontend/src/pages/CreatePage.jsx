@@ -17,9 +17,9 @@ const CreatePage = ()=>{
     console.log("Success:", success)
     console.log("Message:" , message)
     if(!success){
-      window.alert("Please fill all the details")
+      window.alert("Please fill all the details", message)
     }else{
-      window.confirm("Product created successfully")
+      window.confirm("Product created successfully",message)
     }
     setNewProduct({ 
     name : "",
@@ -27,8 +27,6 @@ const CreatePage = ()=>{
     image : ""
   })
   }
-
-
 
   return <div>
     <div>
